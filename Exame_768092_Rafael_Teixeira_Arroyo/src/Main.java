@@ -1,12 +1,13 @@
 
-import view.FormMenu;
+import view.FormLoginConta;
+
 
 
 public class Main {
     
     public static void main(String[] args)    
     {        
-    FormMenu f = new FormMenu();
-    f.setVisible(true);
+    FormLoginConta l = new FormLoginConta();
+    l.setVisible(true);
     }
 }
