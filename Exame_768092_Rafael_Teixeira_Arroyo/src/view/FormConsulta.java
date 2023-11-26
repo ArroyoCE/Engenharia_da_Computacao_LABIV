@@ -226,8 +226,22 @@ public class FormConsulta extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEstoqueActionPerformed
 
     private void txtBuscaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscaKeyReleased
-        if (btnFornecedores.isFocusOwner())
+        String chave = txtBusca.getText();
+        
+        if (!chave.isEmpty() & btnFornecedores.isSelected())
         {
+            List<Fornecedor> lista = new FornecedorDAO().pesquisarPorNome(chave);
+            configurarTabelaFornecedores();
+            
+            DefaultTableModel m = (DefaultTableModel)tabPesquisa.getModel();
+            
+            for(Fornecedor f : lista)
+            {
+                m.addRow(new Object[]{
+                         f.getCNPJ(), f.getNome(), f.getTelefone()});
+                
+            }
+            tabPesquisa.setModel(m);
             
         }
     }//GEN-LAST:event_txtBuscaKeyReleased
@@ -292,8 +306,8 @@ public class FormConsulta extends javax.swing.JFrame {
             }
         };
         m.addColumn("CNPJ");
-        m.addColumn("Telefone");
         m.addColumn("Nome");
+        m.addColumn("Telefone");
         tabPesquisa.setModel(m);
     }
     

@@ -65,6 +65,10 @@ public class Produto {
         this.fornecedor = fornecedor;
     }
     
-
+ @Override
+    public String toString() 
+    {
+        return nome;
+    }
     
 }

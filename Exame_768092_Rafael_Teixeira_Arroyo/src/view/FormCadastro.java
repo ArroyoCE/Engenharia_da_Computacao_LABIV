@@ -581,7 +581,7 @@ public class FormCadastro extends javax.swing.JFrame {
       
                 
        
-            else {
+            else if (res == -1){
                 JOptionPane.showMessageDialog(null, 
                         "Não foi possível inserir.", "Farmácia Popular", 
                         JOptionPane.ERROR_MESSAGE);
@@ -623,7 +623,7 @@ public class FormCadastro extends javax.swing.JFrame {
         if (res == 1)
             JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso.",
                         "Farmácia Popular", JOptionPane.INFORMATION_MESSAGE);
-             if (res == -2) {
+        else if (res == -2) {
                 String update = new ClienteDAO().atualizar(c);
                 JOptionPane.showMessageDialog(null,
                         "Cliente " + update + " atualizado com sucesso!.",

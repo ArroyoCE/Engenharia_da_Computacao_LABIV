@@ -88,5 +88,36 @@ public class FornecedorDAO {
             Conexao.desconectar(con);
         }
     }
+    
+    public List<Fornecedor> pesquisarPorNome(String nome) 
+    {
+        try {
+            String SQL = "select * from tb_fornecedor where nome ilike ?";
+                   
+            
+            cmd = con.prepareStatement(SQL);
+            cmd.setString(1, '%' + nome + '%');
+            ResultSet rs = cmd.executeQuery();
+            List<Fornecedor> lista = new ArrayList<>();
+            while (rs.next())
+            {
+                Fornecedor f = new Fornecedor(rs.getString("CNPJ"),
+                                        rs.getString("Nome"),
+                                        rs.getString("Telefone"));
+                                        
+                
+               
+                lista.add(f);
+                
+            }    
+            return lista;
+        } catch (Exception e) {
+            System.err.println("ERRO: " + e.getMessage());
+            return null;
+        } finally {
+            Conexao.desconectar(con);
+        }
+    }
+       
             
 }
