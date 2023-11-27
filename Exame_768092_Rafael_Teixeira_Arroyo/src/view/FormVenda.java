@@ -13,6 +13,7 @@ import javax.swing.JFrame;
 import model.Produto;
 import model.Venda;
 import java.time.LocalDate;
+import java.sql.Date;
 import javax.swing.JOptionPane;
 
 
@@ -196,8 +197,10 @@ public class FormVenda extends javax.swing.JFrame {
         Venda v = new Venda();
         v.setCpf(txtCPF_Venda.getText());
         v.setId_fun(parseInt(txtCod_Fun.getText()));
-        LocalDate localDate = LocalDate.now();
-        v.setDate(localDate); 
+        java.util.Date utilDate = new java.util.Date();
+        java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+        
+        v.setDate(sqlDate); 
         v.setQuantidade(parseInt(txtQtd.getText()));
         Produto p = (Produto) cbxProduto.getSelectedItem();
         v.setTotal(p.getValor() * v.getQuantidade());

@@ -4,7 +4,8 @@
  */
 package model;
 
-import java.time.LocalDate;
+
+import java.sql.Date;
 
 /**
  *
@@ -14,7 +15,7 @@ public class Venda {
     private int id;
     private int id_fun;
     private String cpf;
-    private LocalDate date;
+    private Date date;
     private float total;
     private int quantidade;
     private int prod_id;
@@ -43,11 +44,11 @@ public class Venda {
         this.cpf = cpf;
     }
 
-    public LocalDate getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
@@ -59,7 +60,7 @@ public class Venda {
         this.total = total;
     }
 
-    public Venda(int id, int id_fun, String cpf, LocalDate date, float total, int quantidade, int prod_id) {
+    public Venda(int id, int id_fun, String cpf, Date date, float total, int quantidade, int prod_id) {
         this.id = id;
         this.id_fun = id_fun;
         this.cpf = cpf;

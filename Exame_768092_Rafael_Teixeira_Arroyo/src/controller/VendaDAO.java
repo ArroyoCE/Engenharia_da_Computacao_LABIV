@@ -10,6 +10,7 @@ import model.Venda;
 import java.sql.Date;
 
 
+
 public class VendaDAO {
     
     private final Connection con;
@@ -27,8 +28,8 @@ public class VendaDAO {
             cmd.setInt(1, v.getId_fun());
             cmd.setInt(2, v.getProd_id());
             cmd.setString(3, v.getCpf());
-            Date date = java.sql.Date.valueOf(v.getDate());
-            cmd.setDate(4, date);
+            //Date date = java.sql.Date.valueOf(v.getDate());
+            cmd.setDate(4, (Date) v.getDate());
             cmd.setFloat(5, v.getTotal());
             cmd.setInt(6, v.getQuantidade());
             if (cmd.executeUpdate() > 0){
@@ -48,6 +49,37 @@ public class VendaDAO {
         }
         
     }
-    
+    public List<Venda> listar() {
+        try {
+            String SQL = "select * "
+                    + "from tb_venda ";
+                    
+            cmd = con.prepareStatement(SQL);
+            ResultSet rs = cmd.executeQuery();
+            List<Venda> lista = new ArrayList<>();
+            while (rs.next()) {
+                Venda v = new Venda(
+                    rs.getInt("id"),
+                    rs.getInt("id_funcionario"),
+                    rs.getString("id_cliente"),
+                    rs.getDate("data"),
+                    rs.getFloat("total"),
+                    rs.getInt("quantidade"),
+                    rs.getInt("id_produto")
+                    
+                    
+                    
+                    
+                );
+                lista.add(v);
+            } 
+            return lista;
+        } catch (SQLException e) {
+            System.err.println("ERRO: " + e.getMessage());
+            return null;
+        } finally {
+            Conexao.desconectar(con);
+        }
+    }    
       
 }
